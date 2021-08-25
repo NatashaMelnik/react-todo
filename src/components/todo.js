@@ -5,11 +5,11 @@ const Todo = (props) => {
 
     return (
         <div className='todo'>
-            <div>{todo.id}. {todo.title} {todo.due_date}</div>
+            <div>{todo.title} - {todo.description} - {todo.due_date}</div>
             <button>x</button>
         </div>
     );
-    
+
 }
 
 export default Todo;

@@ -1,14 +1,15 @@
 import React from 'react';
 import Todo from './todo';
 
-const Todos = (props) => {
-    const todos = props.todos;
+const Todos = React.memo((props) => {
+
+    let list = props.list
 
     return (
-        <div id='todo'>
-            {todos.map((todo, index) => <Todo key={index} todo={todo}/>)}
+        <div>
+            {list.tasks.map((todo, index) => <Todo key={index} todo={todo} props={props} />)}
         </div>
-    )
-}
+    );
+})
 
 export default Todos;

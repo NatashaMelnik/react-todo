@@ -1,0 +1,4 @@
+1. work only with states but not with values strict;
+2. initial first state value in state but not with value;
+3. child components work only with necessury params, not with all state;
+4. 

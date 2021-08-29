@@ -11,7 +11,16 @@ const initialLists = [
     tasks: [
       { id: 1, title: 'task1', description: 'task1 list1 desc', done: true, due_date: '2021-09-25' },
       { id: 2, title: 'task2', description: 'task2 list1 desc', done: true, due_date: '2021-09-25' },
-      { id: 3, title: 'task3', description: 'task3 list1 desc', done: false, due_date: '2021-09-25' }
+      { id: 3, title: 'task3', description: 'task3 list1 desc', done: false, due_date: '2021-09-25' },
+      { id: 4, title: 'task1', description: 'task1 list1 desc', done: true, due_date: '2021-09-25' },
+      { id: 5, title: 'task2', description: 'task2 list1 desc', done: true, due_date: '2021-09-25' },
+      { id: 6, title: 'task3', description: 'task3 list1 desc', done: false, due_date: '2021-09-25' },
+      { id: 7, title: 'task1', description: 'task1 list1 desc', done: true, due_date: '2021-09-25' },
+      { id: 8, title: 'task2', description: 'task2 list1 desc', done: true, due_date: '2021-09-25' },
+      { id: 9, title: 'task3', description: 'task3 list1 desc', done: false, due_date: '2021-09-25' },
+      { id: 10, title: 'task1', description: 'task1 list1 desc', done: true, due_date: '2021-09-25' },
+      { id: 11, title: 'task2', description: 'task2 list1 desc', done: true, due_date: '2021-09-25' },
+      { id: 12, title: 'task12', description: 'task3 list1 desc', done: false, due_date: '2021-09-25' }
     ]
   },
   {
@@ -63,11 +72,10 @@ const App = () => {
       </div>
       <div className='todos-container'>
         <div className='todos-list'>
-          <h1 className='main-header'>Todos:</h1>
+          <h1 className='todos-main-header'>Todos:</h1>
           <Todos list={currentList} onChange={changeStatus} onClick={deleteTodo} />
         </div>
         <div className='input-form'>
-          {/* <div><h2>__input__</h2></div> */}
           <NewTaskForm onSubmit={sendTodo} />
         </div>
       </div>

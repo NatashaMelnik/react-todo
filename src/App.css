@@ -1,15 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Damion&family=Sacramento&display=swap');
+
+html {
+    top: 0;
+    right: 0;
+    margin-top: 0;
+    margin-top: -10px;
+}
+
 .App {
     display: flex;
     width: 100%;
     top: 0;
     right: 0;
+    margin-top: 0;
 }
 
-
-
 .lists-container {
+    position: fixed;
+    min-height: 100%;
     width: 22%;
     border: 2px solid hsl(14, 24%, 25%);
     height: 100%;
@@ -18,8 +27,12 @@
     left: 0;
     padding-top: 20px;
     justify-content: center;
-    background-image: url('https://cdn.wallpapersafari.com/60/4/rNlvKu.jpg');
-    box-shadow: inset 2000px 0 0 0 rgba(255, 255, 255, 0.65);
+    background-image: url('https://1.bp.blogspot.com/-COa7C0s4Yqc/UEFib9CdjeI/AAAAAAAAKX4/KHLla-fwLJ8/s1600/7dfd08ba49dca858b5fe7ec7cbfb1790.jpg');
+    /* box-shadow: inset 2000px 0 0 0 rgba(255, 255, 255, 0.3); */
+    /* box-shadow: inset 2000px 0 0 0 rgba(0, 0, 0, 0.5); */
+    /* box-shadow: inset 2000px 0 0 0 rgba(0, 125, 255, 0.5); */
+    box-shadow: inset 2000px 0 0 0 rgba(255,248,220, 0.1);
+    border-color: rgba(0, 0, 0, 1);
 }
 
 .main-header{
@@ -48,23 +61,49 @@
     padding-top: 20px;
     border: 1px solid green;
     margin-left: 22%;
+    position: relative;
+    min-height: 100%;
+    width: 100%;
     flex: 3;
+    margin-top: 0;
+    top: 0;
+    background: url('https://www.artranked.com/images/c8/c815961716f9f4352a13e80739789e53.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    /* box-shadow: inset 2000px 0 0 0 rgba(255, 255, 255, 0.3); */
+    box-shadow: inset 2000px 0 0 0 rgba(0, 0, 0, 0.5);
+    /* box-shadow: inset 2000px 0 0 0 rgba(0, 125, 255, 0.5); */
+    /* box-shadow: inset 2000px 0 0 0 rgba(255,248,220, 0.1); */
+    border-color: rgba(0, 0, 0, 1);
 }
 
 .todos-list{
     right: 0;
     height: 100%; 
     flex: 1; 
-    padding-left: 20px;
-    padding-right: 20px;
+    justify-content: center;
+    align-items: center;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.todos-main-header{
+    font-family: 'Sacramento';
+    text-decoration: underline;
+    font-size: 68px;
+    text-align: center;
+    text-shadow: 1px 1px 2px hsl(14, 24%, 25%);
+    box-shadow: inset 2000px 0 0 0 rgba(255,248,220, 0.6);
+    width: 244px;
+    border-radius: 68px;
+    /* border: 2px solid goldenrod; */
 }
 
 .single-todo{
-    /* display: flex; */
-    min-height: 54px;
-    background-color: antiquewhite;
-    padding-left: 20px;
-    padding-right: 20px;
+    min-height: 74px;
+    box-shadow: inset 2000px 0 0 0 rgba(255,248,220, 0.6);
+    padding: 20px;
+    border-radius: 8px;
     margin-bottom: 40px;
     word-wrap: break-word;
 }
@@ -81,10 +120,13 @@
     margin-left: 12px;
 }
 
-
-
-
-
 .input-form {
     border: 1px solid yellow;
+    position: fixed;
+    margin-bottom: 0px;
+    position: fixed;
+    height: 100px;
+    bottom: 0;
+    width: 100%;
+    background-color: bisque;
 }

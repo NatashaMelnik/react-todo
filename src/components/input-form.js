@@ -36,11 +36,11 @@ class NewTaskForm extends Component {
         return (
 
             <form className='input-form' onSubmit={this.onSubmitHandler}>
-                <input type="text" placeholder='title' onChange={this.onChangeTitle} value={this.state.title} />
+                <input type="text" className='title-input' placeholder='title' onChange={this.onChangeTitle} value={this.state.title} />
                 <input type="text" placeholder='description' onChange={this.onChangeDescription} value={this.state.description} />
                 <input type="checkbox" onChange={this.onChangeBox} checked={this.state.done} />
                 <input type="date" onChange={this.onChangeDate} value={this.state.due_date} />
-                <button type='submit'>send</button>
+                <button type='submit' className='send-submit_button'>send</button>
             </form>
 
         );

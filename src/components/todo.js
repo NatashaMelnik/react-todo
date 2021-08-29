@@ -15,7 +15,7 @@ const Todo = (props) => {
                 {(todo.due_date.length > 0) ? <div className='todo-date'> on {todo.due_date}.</div> : <div>.</div>}
             </div>
             {(todo.description.length > 0) ? <div className='todo-description'>({todo.description})</div> : <div></div>}
-            <button onClick={() => deleteTodo(todo)}>x</button>
+            <button className='delete-button' onClick={() => deleteTodo(todo)}>x</button>
         </div>
     );
 

@@ -3,7 +3,7 @@ import Todo from './todo';
 
 const Todos = React.memo((props) => {
 
-    let list = props.list
+    let list = props.list;
 
     return (
         <div>

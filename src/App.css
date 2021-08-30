@@ -31,19 +31,27 @@ html {
     /* box-shadow: inset 2000px 0 0 0 rgba(255, 255, 255, 0.3); */
     /* box-shadow: inset 2000px 0 0 0 rgba(0, 0, 0, 0.5); */
     /* box-shadow: inset 2000px 0 0 0 rgba(0, 125, 255, 0.5); */
-    box-shadow: inset 2000px 0 0 0 rgba(255,248,220, 0.1);
+    box-shadow: inset 2000px 0 0 0 rgba(255, 248, 220, 0.1);
     border-color: rgba(0, 0, 0, 1);
 }
 
-.main-header{
+.main-header {
+    height: 84px;
+    width: 200px;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    box-shadow: inset 2000px 0 0 0 rgb(255 248 220 / 60%);
+    border-radius: 68px;
     font-family: 'Sacramento';
     text-decoration: underline;
     font-size: 68px;
-    text-align: center;
     text-shadow: 1px 1px 2px hsl(14, 24%, 25%);
 }
 
-.list{
+.list {
     text-align: center;
     font-family: 'Damion', cursive;
     font-size: 32px;
@@ -51,7 +59,7 @@ html {
     text-shadow: 0.5px 0.5px 1px hsl(15, 19%, 56%);
 }
 
-.list:hover{
+.list:hover {
     -webkit-transform: scale(1.2);
     -ms-transform: scale(1.2);
     transform: scale(1.2);
@@ -62,7 +70,7 @@ html {
     border: 1px solid green;
     margin-left: 22%;
     position: relative;
-    min-height: 100%;
+    min-height: 100vh;
     width: 100%;
     flex: 3;
     margin-top: 0;
@@ -77,43 +85,43 @@ html {
     border-color: rgba(0, 0, 0, 1);
 }
 
-.todos-list{
+.todos-list {
     right: 0;
-    height: 100%; 
-    flex: 1; 
+    height: 100%;
+    flex: 1;
     justify-content: center;
     align-items: center;
     padding-left: 40px;
     padding-right: 40px;
 }
 
-.todos-main-header{
+.todos-main-header {
     font-family: 'Sacramento';
     text-decoration: underline;
     font-size: 68px;
     text-align: center;
     text-shadow: 1px 1px 2px rgb(79, 56, 48);
-    box-shadow: inset 2000px 0 0 0 rgba(255,248,220, 0.6);
+    box-shadow: inset 2000px 0 0 0 rgba(255, 248, 220, 0.6);
     width: 244px;
     border-radius: 68px;
     /* border: 2px solid goldenrod; */
 }
 
-.single-todo{
+.single-todo {
     min-height: 74px;
-    box-shadow: inset 2000px 0 0 0 rgba(255,248,220, 0.6);
+    box-shadow: inset 2000px 0 0 0 rgba(255, 248, 220, 0.6);
     padding: 20px;
     border-radius: 8px;
     margin-bottom: 40px;
     word-wrap: break-word;
 }
 
-.todo-header{
+.todo-header {
     display: flex;
     align-items: center;
 }
 
-.todo-title{
+.todo-title {
     font-family: 'Sacramento';
     font-size: 34px;
     margin-right: 12px;
@@ -125,14 +133,14 @@ html {
     position: fixed;
     margin-bottom: 0px;
     position: fixed;
-    /* height: 100px; */
     padding-top: 10px;
     bottom: 0;
     width: 100%;
+    left: 22.3%;
     background-color: bisque;
 }
 
-input{
+input {
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
@@ -141,20 +149,59 @@ input{
     box-sizing: border-box;
 }
 
-.send-submit_button, button{
+.send-submit_button,
+button {
     width: 200px;
     padding: 1em;
     margin-bottom: 2em;
     border-radius: 5000px;
-    backdrop-filter: blur(5px);
-    box-shadow: 4px 4px 60px rgba(0,0,0,0.2);
-    font-family: Montserrat, sans-serif;
+    box-shadow: 4px 4px 60px rgba(0, 0, 0, 0.2);
     font-weight: 500;
     transition: all 0.2s ease-in-out;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.delete-button{
+.delete-button {
     width: 40px;
     margin-bottom: 0;
+}
+
+.error-page {
+    height: 54px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Sacramento';
+    text-decoration: underline;
+    font-size: 28px;
+    text-align: center;
+    text-shadow: 1px 1px 2px rgb(79 56 48);
+    box-shadow: inset 2000px 0 0 0 rgb(255 248 220 / 60%);
+    width: 424px;
+    border-radius: 68px;
+}
+
+.today-title,
+.today-lists_button {
+    height: 54px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Sacramento';
+    text-decoration: underline;
+    font-size: 38px;
+    text-align: center;
+    text-shadow: 1px 1px 2px rgb(79 56 48);
+    box-shadow: inset 2000px 0 0 0 rgb(255 248 220 / 60%);
+    width: 382px;
+    border-radius: 68px;
+}
+
+.today-lists_button {
+    width: 224px;
+    bottom: 28px;
+    position: absolute;
+    bottom: 34px;
+    margin-left: 14%;
 }

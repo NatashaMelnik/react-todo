@@ -37,42 +37,36 @@ const initState = [
     }
 ];
 
-
-// const changeStatus = (todo) => {
-//     todo.done = !todo.done;
-//     setLists(lists.slice());
-//   }
-
 //   const sendTodo = (todo) => {
 //     todo.id = lists[lists.length - 1].tasks[lists[lists.length - 1].tasks.length - 1] + 1;
 //     currentList.tasks.push(todo);
 //     setLists(lists.map(list => list === currentList ? { ...currentList } : list));
 //   }
-// const deleteTodo = (todo) => {
-    // state.forEach(list => list.tasks = list.tasks.filter(el => el.id !== todo.id));
-// }
+
 
 function remove(el, array) {
     return array.filter(item => item !== el);
 }
 
+function changeStatus(el, array) {
+    const todoIndex = array.findIndex(task => task === el); 
+    array[todoIndex].done = !array[todoIndex].done;
+    return array;
+}
+
 export const todoReducer = (state = initState, action) => {
     switch (action.type) {
         case 'ADD_TODO':
-            const todoToAdd = action.payload;
-            console.log(todoToAdd);
-
             return state;
+
         case 'DELETE_TODO':
-            const todo = action.payload;
+            const todoForDelete = action.payload;
+            return state.map(list => list.tasks.includes(todoForDelete) ? {...list, tasks: remove(todoForDelete, list.tasks) } : list)
 
-            // return state
-            //     .map(list => list.tasks.includes(todo) ? {...list, tasks: remove(todo, list.tasks) } : list)
-
-            const list = state.find(l => l.tasks.includes(todo));
-            list.tasks = remove(todo, list.tasks);
-            return state.slice();
-            
+        case 'CHANGE_STATUS':
+            const todoToChangeStatus = action.payload;
+            return state.map(list => list.tasks.includes(todoToChangeStatus) ? {...list, tasks: changeStatus(todoToChangeStatus, list.tasks) } : list);
+        
         default:
             return state;
     }

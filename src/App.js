@@ -16,20 +16,10 @@ const App = () => {
   const [listId, setChosenListId] = useState(1);
   let currentList = lists.find(list => list.id === listId);
 
-  
-  const changeStatus = (todo) => {
-    todo.done = !todo.done;
-    setLists(lists.slice());
-  }
-
   const sendTodo = (todo) => {
     todo.id = lists[lists.length - 1].tasks[lists[lists.length - 1].tasks.length - 1] + 1;
     currentList.tasks.push(todo);
     setLists(lists.map(list => list === currentList ? { ...currentList } : list));
-  }
-  const deleteTodo = (todo) => {
-    lists.forEach(list => list.tasks = list.tasks.filter(el => el.id !== todo.id));
-    setLists(lists.slice());
   }
 
   let location = useLocation();
@@ -52,10 +42,10 @@ const App = () => {
           <div className='todos-list'>
             <h1 className='todos-main-header'>Todos:</h1>
             <Route path='/today'>
-              <TodayTasks lists={lists} onChange={changeStatus} onClick={deleteTodo} />
+              <TodayTasks lists={lists} />
             </Route>
             <Route path='/list/:listName'>
-              <Todos list={currentList} onChange={changeStatus} onClick={deleteTodo} />
+              <Todos list={currentList} />
               <div className='input-form'>
                 <NewTaskForm onSubmit={sendTodo} />
               </div>

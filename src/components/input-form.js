@@ -1,15 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 // import { addTodo } from '../redux/action';
-// import { connect } from "react-redux";
 
+const NewTaskForm = () => {
+    const state = { title: '', description: '', due_date: '', done: '' };
 
-class NewTaskForm extends Component {
-
-    state = { title: '', description: '', due_date: '', done: '' };
-
-    onSubmitHandler = (event) => {
+    const onSubmitHandler = (event) => {
+        
         event.preventDefault();
-        if (this.state.title.length > 0) {
+        console.log(state.title)
+        if (state.title.length > 0) {
             this.props.onSubmit(
                 this.state
             );
@@ -17,36 +16,40 @@ class NewTaskForm extends Component {
         }
     }
 
-    onChangeTitle = (event) => {
-        return this.setState({ title: event.target.value })
+    const onChangeTitle = (event) => {
+        state.title = event.target.value;
+        return event.target.value;
+        // return this.setState({ title: event.target.value })
     }
 
-    onChangeDescription = (event) => {
-        return this.setState({ description: event.target.value })
+    const onChangeDescription = (event) => {
+        state.description = event.target.value;
+        // return this.setState({ description: event.target.value })
     }
 
-    onChangeDate = (event) => {
-        return this.setState({ due_date: event.target.value })
+    const onChangeDate = (event) => {
+        event.target.due_date = event.target.value; 
+        // return this.setState({ due_date: event.target.value })
     }
 
-    onChangeBox = (event) => {
-        return this.setState({ done: event.target.value })
+    const onChangeBox = (event) => {
+        event.target.done = event.target.value; 
+        // return this.setState({ done: event.target.value })
     }
 
-    render() {
+    return (
 
-        return (
+        <form className='input-form' onSubmit={() => onSubmitHandler()}>
+            <input type="text" className='title-input' placeholder='title' onChange={onChangeTitle} />
+            <input type="text" placeholder='description' onChange={onChangeDescription} value={state.description} />
+            <input type="checkbox" onChange={onChangeBox} checked={state.done} />
+            <input type="date" onChange={onChangeDate} value={state.due_date} />
+            <button type='submit' className='send-submit_button'>send</button>
+        </form>
 
-            <form className='input-form' onSubmit={this.onSubmitHandler}>
-                <input type="text" className='title-input' placeholder='title' onChange={this.onChangeTitle} value={this.state.title} />
-                <input type="text" placeholder='description' onChange={this.onChangeDescription} value={this.state.description} />
-                <input type="checkbox" onChange={this.onChangeBox} checked={this.state.done} />
-                <input type="date" onChange={this.onChangeDate} value={this.state.due_date} />
-                <button type='submit' className='send-submit_button'>send</button>
-            </form>
+    );
 
-        );
-    }
 }
+
 
 export default NewTaskForm;

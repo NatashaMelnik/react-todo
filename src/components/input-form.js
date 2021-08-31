@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+// import { addTodo } from '../redux/action';
+// import { connect } from "react-redux";
 
 
 class NewTaskForm extends Component {

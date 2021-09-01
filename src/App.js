@@ -8,58 +8,51 @@ import UnknownPage from './components/unknown-page';
 import TodayTasks from './components/today-tasks';
 import { useSelector } from 'react-redux';
 
-function setLists() {}
 
 const App = () => {
   const lists = useSelector(lists => lists);
+  // console.log(lists)
+  // lists.then(res => console.log(res))
 
-  const [listId, setChosenListId] = useState(1);
-  let currentList = lists.find(list => list.id === listId);
+  // const [listId, setChosenListId] = useState(1);
+  // let currentList = lists.find(list => list.id === listId);
 
-  const sendTodo = (todo) => {
-    todo.id = lists[lists.length - 1].tasks[lists[lists.length - 1].tasks.length - 1] + 1;
-    currentList.tasks.push(todo);
-    setLists(lists.map(list => list === currentList ? { ...currentList } : list));
-  }
+  // let location = useLocation();
+  // if (location.pathname.length > 3 && location.pathname !== '/today' && location.pathname !== '/today/') {
+  //   const pathList = lists.find(list => list.name === location.pathname.substring(6));
+  //   currentList = (pathList) ? pathList : 'err';
+  // }
 
-  let location = useLocation();
-  if (location.pathname.length > 3 && location.pathname !== '/today' && location.pathname !== '/today/') {
-    const pathList = lists.find(list => list.name === location.pathname.substring(6));
-    currentList = (pathList) ? pathList : 'err';
-  }
 
   return (
     <div className="App">
       <div className='lists-container'>
         <h1 className='main-header'>Lists:</h1>
-        <Lists lists={lists} onClick={setChosenListId} />
+        <Lists/>
         <Link to='/today'>
           <div className='today-lists_button'>Today tasks</div>
         </Link>
       </div>
       <div className='todos-container'>
-        {currentList !== 'err' ? (
+        {/* {currentList !== 'err' ? ( */}
           <div className='todos-list'>
             <h1 className='todos-main-header'>Todos:</h1>
             <Route path='/today'>
-              <TodayTasks lists={lists} />
+              {/* <TodayTasks lists={lists} /> */}
             </Route>
-            <Route path='/list/:listName'>
-              <Todos list={currentList} />
+            <Route path='/list/:listId'>
+              <Todos list={lists} />
               <div className='input-form'>
-                <NewTaskForm onSubmit={sendTodo} />
+                <NewTaskForm />
               </div>
             </Route>
           </div>
-        )
-          : (
+        {/* ) */}
+          {/* : (
             <UnknownPage />
-          )}
+          )} */}
       </div>
     </div>
-
-
-
 
   );
 }

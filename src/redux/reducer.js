@@ -1,3 +1,5 @@
+import fetchServer from '../services/method-collection';
+
 const initState = [
     {
         id: 1,
@@ -37,36 +39,48 @@ const initState = [
     }
 ];
 
-//   const sendTodo = (todo) => {
-//     todo.id = lists[lists.length - 1].tasks[lists[lists.length - 1].tasks.length - 1] + 1;
-//     currentList.tasks.push(todo);
-//     setLists(lists.map(list => list === currentList ? { ...currentList } : list));
-//   }
 
+function createId(lists) {
+    return lists[lists.length - 1].tasks[lists[lists.length - 1].tasks.length - 1].id + 1;
+}
+
+function rebaseTodo(obj, state) {
+    obj.id = createId(state);
+    return obj;
+}
 
 function remove(el, array) {
-    return array.filter(item => item !== el);
+    return array.filter(item => item.id !== el.id);
 }
 
 function changeStatus(el, array) {
-    const todoIndex = array.findIndex(task => task === el); 
+    const todoIndex = array.findIndex(task => task.id === el.id);
     array[todoIndex].done = !array[todoIndex].done;
     return array;
 }
 
-export const todoReducer = (state = initState, action) => {
+export const todoReducer = (state = fetchServer('GetAllLists'), action) => {
+    
     switch (action.type) {
-        case 'ADD_TODO':
+
+        case 'LIST_STATUS_UPDATED':
+            const newListId = action.payload;
+            console.log(newListId);
             return state;
 
         case 'DELETE_TODO':
             const todoForDelete = action.payload;
-            return state.map(list => list.tasks.includes(todoForDelete) ? {...list, tasks: remove(todoForDelete, list.tasks) } : list)
+            return state.map(list => list.tasks.includes(todoForDelete) ? { ...list, tasks: remove(todoForDelete, list.tasks) } : list)
 
         case 'CHANGE_STATUS':
             const todoToChangeStatus = action.payload;
-            return state.map(list => list.tasks.includes(todoToChangeStatus) ? {...list, tasks: changeStatus(todoToChangeStatus, list.tasks) } : list);
-        
+            return state.map(list => list.tasks.includes(todoToChangeStatus) ? { ...list, tasks: changeStatus(todoToChangeStatus, list.tasks) } : list);
+
+        case 'ADD_TODO':
+            const newTodoObj = rebaseTodo(action.payload, state);
+            const listIdAddTo = newTodoObj.listId;
+            return state.map(list => list.id === listIdAddTo ? { ...list, tasks: [...list.tasks, newTodoObj] } : list);
+
         default:
             return state;
     }

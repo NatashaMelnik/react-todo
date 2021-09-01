@@ -14,7 +14,7 @@ ReactDOM.render(
     <Router>
       <Provider store={store}>
         <App />
-      </Provider>,
+      </Provider>
     </Router>
   </React.StrictMode>,
   document.getElementById('root')

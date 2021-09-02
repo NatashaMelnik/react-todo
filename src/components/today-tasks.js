@@ -1,34 +1,32 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Todo from './todo';
+import { useSelector } from 'react-redux';
+import fetchServer from '../services/method-collection';
+import { useDispatch } from 'react-redux';
+import { getTodayTasks } from '../redux/action';
 
-const getCurrentDate = () => {
-    return new Date();
-};
+const TodayTasks = () => {
 
-const isTodayTodo = (todo) => {
-    const todoDate = new Date(todo.due_date);
-    if(todoDate.setHours(0,0,0,0) === getCurrentDate().setHours(0,0,0,0)) {
-        return true;
-    }
-};
+    // const dispatch = useDispatch();
+    // dispatch(getTodayTasks());
 
-const TodayTasks = (props) => {
+    const items = useSelector(lists => lists);
 
-    const lists = props.lists;
+    console.log(items)
+
+    const lists = [];
 
     return (
         <div className='today-container'>
-
+            <div>qweqw</div>
             {lists.map((list, index) =>
                 <div key={index}>
                     <Link to={`/list/${list.name}`}>
                         <h2 className='today-title'>{list.name}</h2>
                     </Link>
                     {list.tasks.map((todo, index2) =>
-                        {if(isTodayTodo(todo)) {
-                           return <Todo key={index2} todo={todo} props={props} />
-                        }}
+                        <Todo key={index2} todo={todo} />
                     )}
                 </div>
             )}

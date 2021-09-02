@@ -12,7 +12,7 @@ const Todo = (props) => {
         <div className='single-todo'>
             <div className='todo-header'>
                 <input type='checkBox' checked={todo.done} onChange={() => dispatch(changeTodoStatus(todo))}></input>
-                <div className='todo-title'><b>{todo.title}</b></div>
+                <div className='todo-title'><b>{todo.name}</b></div>
                 {(todo.due_date.length > 0) ? <div className='todo-date'> on {todo.due_date}.</div> : <div>.</div>}
             </div>
             {(todo.description.length > 0) ? <div className='todo-description'>({todo.description})</div> : <div></div>}

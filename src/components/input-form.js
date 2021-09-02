@@ -6,18 +6,19 @@ const NewTaskForm = () => {
 
     const dispatch = useDispatch();
 
-    const state = { listId: 1, title: '', description: '', due_date: '', done: '' };
+    const state = { name: '', description: '', due_date: '', done: '' };
 
     const onSubmitHandler = (event) => {
         event.preventDefault();
-        if (state.title.length > 0) {
+        if (state.name.length > 0) {
+            state.done = (state.done+'') ? true : false;
             dispatch(addTodo(state));
             document.getElementById('form').reset();
         }
     }
 
     const onChangeTitle = (event) => {
-        state.title = event.target.value;
+        state.name = event.target.value;
     }
 
     const onChangeDescription = (event) => {
@@ -25,11 +26,11 @@ const NewTaskForm = () => {
     }
 
     const onChangeDate = (event) => {
-        event.target.due_date = event.target.value;
+        state.due_date = event.target.value;
     }
 
     const onChangeBox = (event) => {
-        event.target.done = event.target.value;
+        state.done = event.target.value;
     }
 
     return (

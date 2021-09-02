@@ -2,18 +2,23 @@ import React, { useState, useEffect } from 'react';
 import List from './list';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { getServer } from '../redux/action';
 
 
 const Lists = () => {
-    const listsApi = useSelector(lists => lists);
-    const [items, setItems] = useState([]);
+
+    const dispatch = useDispatch();
     useEffect(() => {
-        listsApi.then(res => setItems(res))
-    }, []);
+      dispatch(getServer());
+    }, [])
+  
+    const items = useSelector(state => state.lists);
 
     return (
         <div id='list'>
             {items.map((item, index) =>
+
                 <div key={index}>
                     <Link to={`/list/${item.id}`}>
                         <List key={index} list={item} />

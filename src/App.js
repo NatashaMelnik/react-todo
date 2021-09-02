@@ -1,28 +1,19 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import Todos from './components/todos';
 import NewTaskForm from './components/input-form';
 import Lists from './components/lists';
-import { Route, useLocation, Link } from 'react-router-dom';
-import UnknownPage from './components/unknown-page';
+import { Route, Link } from 'react-router-dom';
+import { getServer } from './redux/action';
+import { useDispatch } from 'react-redux';
 import TodayTasks from './components/today-tasks';
-import { useSelector } from 'react-redux';
-
 
 const App = () => {
-  const lists = useSelector(lists => lists);
-  // console.log(lists)
-  // lists.then(res => console.log(res))
-
-  // const [listId, setChosenListId] = useState(1);
-  // let currentList = lists.find(list => list.id === listId);
-
-  // let location = useLocation();
-  // if (location.pathname.length > 3 && location.pathname !== '/today' && location.pathname !== '/today/') {
-  //   const pathList = lists.find(list => list.name === location.pathname.substring(6));
-  //   currentList = (pathList) ? pathList : 'err';
-  // }
-
+  
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getServer());
+  }, [])
 
   return (
     <div className="App">
@@ -38,10 +29,10 @@ const App = () => {
           <div className='todos-list'>
             <h1 className='todos-main-header'>Todos:</h1>
             <Route path='/today'>
-              {/* <TodayTasks lists={lists} /> */}
+              <TodayTasks/>
             </Route>
             <Route path='/list/:listId'>
-              <Todos list={lists} />
+              <Todos/>
               <div className='input-form'>
                 <NewTaskForm />
               </div>

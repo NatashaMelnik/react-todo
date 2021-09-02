@@ -2,6 +2,8 @@ const url = 'http://localhost:5555/orm/lists/';
 
 const Get = (what, body) => {
     switch (what) {
+        case 'listsNlist':
+            return GetAPI(`/all-lists-single/${body}`)
         case 'lists':
             return GetAPI(`/all-lists`);
         case 'tasks':
@@ -10,6 +12,8 @@ const Get = (what, body) => {
             return GetAPI(`/${body}/tasks`);
         case 'task':
             return GetAPI(`/${body.listId}/tasks/${body.taskId}`);
+        case 'today':
+            return GetAPI(`/today`);
         default:
             return;
     }

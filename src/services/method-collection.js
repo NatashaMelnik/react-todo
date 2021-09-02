@@ -1,7 +1,10 @@
 import Get from './get';
+import Post from './post';
 
 const fetchServer = (requestType, body) => {
     switch (requestType) {
+        case 'GetListsAndStartList':
+            return Get('listsNlist', body);
         case 'GetAllLists':
             return Get('lists');
         case 'GetAllTasks':
@@ -10,10 +13,10 @@ const fetchServer = (requestType, body) => {
             return Get('list', body);
         case 'GetTaskById':
             return Get('task', body);
-        // case 'GetTask':
-        //     return GetTaskById();
-        // case 'Post':
-        //     return Post();
+        case 'GetTodayTasks':
+            return Get('today');
+        case 'Post':
+            return Post(body);
         // case 'Patch':
         //     return Patch();
         // case 'Delete':

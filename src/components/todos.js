@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { listStatusUpdate } from '../redux/action';
 
 
-const Todos = () => {
+const Todos = React.memo(() => {
 
     const dispatch = useDispatch();
     
@@ -16,7 +16,6 @@ const Todos = () => {
     
     if(items[0]){
         if(listId != items[0].list_id){
-            console.log('nope')
             dispatch(listStatusUpdate(listId))
         }
     }
@@ -27,6 +26,6 @@ const Todos = () => {
             {items.map((todo, index) => <Todo key={index} todo={todo} />)}
         </div>
     );
-}
+});
 
 export default Todos;

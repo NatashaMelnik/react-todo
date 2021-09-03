@@ -1,17 +1,21 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { addTodo } from '../redux/action';
+import { useSelector } from 'react-redux';
 
 const NewTaskForm = () => {
 
     const dispatch = useDispatch();
+    const items = useSelector(state => state.list);
 
-    const state = { name: '', description: '', due_date: '', done: '' };
+    const state = { name: '', description: '', due_date: '', done: '', list_id: '' };
 
     const onSubmitHandler = (event) => {
         event.preventDefault();
-        if (state.name.length > 0) {
+        if (state.name.length > 0 && items) {
             state.done = (state.done+'') ? true : false;
+            state.list_id = items[0].list_id;
+            console.log(state.list_id);
             dispatch(addTodo(state));
             document.getElementById('form').reset();
         }

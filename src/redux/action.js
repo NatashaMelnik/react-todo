@@ -31,28 +31,35 @@ export const getTodayTasks = () => dispatch => {
     })
 }
 
-export const deleteTodo = todo => ({
-  type: "DELETE_TODO",
-  payload: todo
-});
-
-export const changeTodoStatus = todo => ({
-  type: 'CHANGE_STATUS',
-  payload: todo
-});
-
-// export const addTodo = todoObj => ({
-  // type: 'ADD_TODO',
-  // payload: todoObj
-// });
+export const deleteTodo = (todoObj) => dispatch => {
+  return fetchServer('Delete', todoObj)
+    .then(res => {
+      listStatusUpdate(todoObj.list_id)(dispatch);
+      dispatch({
+        type: 'DELETE_TODO',
+        payload: res
+      });
+    });
+}
 
 export const addTodo = (todoObj) => dispatch => {
-  fetchServer('Post', todoObj)
+  return fetchServer('Post', todoObj)
     .then(res => {
+      listStatusUpdate(res.list_id)(dispatch);
       dispatch({
         type: 'ADD_TODO',
         payload: res
-      })
-    })
+      });
+    });
 }
 
+export const changeTodoStatus = (todoObj) => dispatch => {
+  fetchServer('Patch', todoObj)
+    .then(res => {
+      listStatusUpdate(res.list_id)(dispatch);
+      dispatch({
+        type: 'CHANGE_STATUS',
+        payload: res
+      });
+    });
+}

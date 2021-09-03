@@ -1,37 +1,37 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Todo from './todo';
 import { useSelector } from 'react-redux';
-import fetchServer from '../services/method-collection';
 import { useDispatch } from 'react-redux';
 import { getTodayTasks } from '../redux/action';
 
-const TodayTasks = () => {
+const TodayTasks = React.memo(() => {
 
-    // const dispatch = useDispatch();
-    // dispatch(getTodayTasks());
+    const dispatch = useDispatch();
 
     const items = useSelector(lists => lists);
 
-    console.log(items)
+    useEffect(() => {
+        dispatch(getTodayTasks());
+    }, []);
 
-    const lists = [];
+    function getListName(id) {
+        return items.lists.find(list => list.id = id).list_name;
+    }
 
     return (
         <div className='today-container'>
-            <div>qweqw</div>
-            {lists.map((list, index) =>
-                <div key={index}>
-                    <Link to={`/list/${list.name}`}>
-                        <h2 className='today-title'>{list.name}</h2>
+            {items.list.map((todo, index) =>
+                <div key={index} >
+                    <Todo todo={todo} />
+                    <Link to={`/list/${todo.list_id}`}>
+                        <div className='list-name_link'>{getListName(todo.list_id)}</div>
                     </Link>
-                    {list.tasks.map((todo, index2) =>
-                        <Todo key={index2} todo={todo} />
-                    )}
                 </div>
+
             )}
         </div>
     )
-}
+});
 
 export default TodayTasks;

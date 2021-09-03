@@ -4,16 +4,14 @@ import Todos from './components/todos';
 import NewTaskForm from './components/input-form';
 import Lists from './components/lists';
 import { Route, Link } from 'react-router-dom';
-import { getServer } from './redux/action';
-import { useDispatch } from 'react-redux';
 import TodayTasks from './components/today-tasks';
 
 const App = () => {
   
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getServer());
-  }, [])
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(getServer());
+  // }, [])
 
   return (
     <div className="App">
@@ -27,8 +25,8 @@ const App = () => {
       <div className='todos-container'>
         {/* {currentList !== 'err' ? ( */}
           <div className='todos-list'>
-            <h1 className='todos-main-header'>Todos:</h1>
             <Route path='/today'>
+              <h1 className='todos-main-header'>Todos for today:</h1>
               <TodayTasks/>
             </Route>
             <Route path='/list/:listId'>
